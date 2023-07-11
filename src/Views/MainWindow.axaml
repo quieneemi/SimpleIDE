@@ -1,0 +1,91 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:icons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+        xmlns:avedit="clr-namespace:AvaloniaEdit;assembly=AvaloniaEdit"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="SimpleWebStudio.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Simple Web Studio">
+    
+    <Window.Styles>
+        <Styles>
+            <Style Selector="Button">
+                <Setter Property="Width" Value="47"/>
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="Background" Value="Transparent"/>
+            </Style>
+            
+            <Style Selector="icons|MaterialIcon">
+                <Setter Property="Width" Value="26"/>
+                <Setter Property="Height" Value="26"/>
+                <Setter Property="Foreground" Value="LightGray"/>
+            </Style>
+        </Styles>
+    </Window.Styles>
+    
+    <Grid ColumnDefinitions="Auto,*">
+        <DockPanel Grid.Column="0" Background="#516071">
+            <Button DockPanel.Dock="Bottom"
+                    HotKey="F1"
+                    Click="HelpButton_OnClick">
+                <icons:MaterialIcon Kind="HelpCircleOutline"/>
+            </Button>
+            <StackPanel DockPanel.Dock="Top" Spacing="3">
+                <Button HotKey="Ctrl+B"
+                        Click="ExplorerButton_OnClick">
+                    <icons:MaterialIcon Kind="FolderOutline"/>
+                    <Button.ContextMenu>
+                        <ContextMenu Placement="RightEdgeAlignedTop">
+                            <MenuItem Header="Open File"
+                                      HotKey="Ctrl+Shift+O"
+                                      Click="OpenFileMenuItem_OnClick"/>
+                            <MenuItem Header="Open Folder"
+                                      HotKey="Ctrl+O"
+                                      Click="OpenFolderMenuItem_OnClick"/>
+                            <Separator/>
+                            <MenuItem Header="Refresh" Click="RefreshExplorerMenuItem_OnClick"/>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+                <Button HotKey="Ctrl+Shift+V"
+                        Click="WebViewButton_OnClick">
+                    <icons:MaterialIcon Kind="EyeOutline"/>
+                    <Button.ContextMenu>
+                        <ContextMenu Placement="RightEdgeAlignedTop">
+                            <MenuItem Header="Refresh"
+                                      Click="RefreshWebViewMenuItem_OnClick"/>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+                <Button Name="ThemeButton" Click="ThemeButton_OnClick">
+                    <icons:MaterialIcon Kind="SunMoonStars"/>
+                </Button>
+            </StackPanel>
+        </DockPanel>
+        <Grid Name="LayoutGrid" Grid.Column="1" ColumnDefinitions="Auto,Auto,*,Auto,*">
+            <ContentControl Grid.Column="0" Padding="5">
+                <TreeView Name="Explorer" SelectionChanged="Explorer_OnSelectionChanged"/>
+            </ContentControl>
+            <GridSplitter Name="ExplorerSplitter"
+                          Grid.Column="1"
+                          ResizeDirection="Columns"
+                          Background="#516071"/>
+            <ContentControl Grid.Column="2" Padding="5">
+                <avedit:TextEditor Name="Editor"
+                                   FontSize="16"
+                                   FontFamily="Cascadia Code,Consolas,Menlo,Monospace"
+                                   ShowLineNumbers="True"/>
+            </ContentControl>
+            <GridSplitter Name="WebViewSplitter"
+                          Grid.Column="3"
+                          ResizeDirection="Columns"
+                          Background="#516071"/>
+            <ContentControl Grid.Column="4" Padding="5">
+                <Decorator Name="WebView"/>
+            </ContentControl>
+        </Grid>
+    </Grid>
+    
+</Window>

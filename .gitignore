@@ -1,0 +1,8 @@
+# Dotnet
+bin
+obj
+
+# IDE s
+.vs
+.vscode
+.idea

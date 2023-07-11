@@ -1,0 +1,33 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="130"
+        x:Class="SimpleWebStudio.Views.InputDialog"
+        Icon="/Assets/avalonia-logo.ico"
+        WindowStartupLocation="CenterOwner"
+        ExtendClientAreaToDecorationsHint="True"
+        Width="350" Height="130"
+        CanResize="False">
+    
+    <StackPanel Spacing="6" Margin="12">
+        <Label Content="Enter name:"/>
+        <TextBox Name="TextBox" Watermark="Type here.."/>
+        <StackPanel Orientation="Horizontal"
+                    Margin="0, 10, 0, 0"
+                    HorizontalAlignment="Right"
+                    Spacing="10">
+            <Button Content="Ok"
+                    HotKey="Enter"
+                    Width="80"
+                    HorizontalContentAlignment="Center"
+                    Click="OkButton_OnClick"/>
+            <Button Content="Cancel"
+                    HotKey="Escape"
+                    Width="80"
+                    HorizontalContentAlignment="Center"
+                    Click="CancelButton_OnClick"/>
+        </StackPanel>
+    </StackPanel>
+    
+</Window>
